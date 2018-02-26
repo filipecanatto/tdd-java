@@ -1,55 +1,53 @@
 package br.com.devisgood;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import static org.junit.Assert.*;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class RomanNumberConverterTest extends TestCase{
+public class RomanNumberConverterTest {
 
 	@Test
 	public void withOneSymbol(){
 		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
 		int res = romanNumberConverter.convert("I");
-		assertEquals(1,res);
+		Assert.assertEquals(1,res);
 
 		res = romanNumberConverter.convert("V");
-		assertEquals(5,res);
+		Assert.assertEquals(5,res);
 
 		res = romanNumberConverter.convert("X");
-		assertEquals(10,res);
+		Assert.assertEquals(10,res);
 
 		res = romanNumberConverter.convert("L");
-		assertEquals(50,res);
+		Assert.assertEquals(50,res);
 
 		res = romanNumberConverter.convert("C");
-		assertEquals(100,res);
+		Assert.assertEquals(100,res);
 
 		res = romanNumberConverter.convert("D");
-		assertEquals(500,res);
+		Assert.assertEquals(500,res);
 
 		res = romanNumberConverter.convert("M");
-		assertEquals(1000,res);
+		Assert.assertEquals(1000,res);
 	}
 
 	@Test
 	public void withTwoSymbols(){
 		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
 		int res = romanNumberConverter.convert("XX");
-		assertEquals(20, res);
+		Assert.assertEquals(20, res);
 		
 		res = romanNumberConverter.convert("XV");
-		assertEquals(15, res);
+		Assert.assertEquals(15, res);
 	}
 	
 	@Test
 	public void withFourSymbolsSplitByTwo(){
 		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
 		int res = romanNumberConverter.convert("XXII");
-		assertEquals(22, res);
+		Assert.assertEquals(22, res);
 		
 		res = romanNumberConverter.convert("XXVV");
-		assertEquals(30, res);
+		Assert.assertEquals(30, res);
 	}
 	
 	@Test
@@ -59,12 +57,12 @@ public class RomanNumberConverterTest extends TestCase{
 	public void MSNLessThanLSN(){
 		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
 		int res = romanNumberConverter.convert("IX");
-		assertEquals(9, res);
+		Assert.assertEquals(9, res);
 	}
 	
 	public void withComplexNumbers(){
 		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
 		int res = romanNumberConverter.convert("XXIV");
-		assertEquals(24, res);
+		Assert.assertEquals(24, res);
 	}
 }
