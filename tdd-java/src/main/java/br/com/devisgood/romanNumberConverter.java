@@ -1,7 +1,7 @@
 package br.com.devisgood;
 import java.util.*;
 
-public class romanNumberConverter{
+public class RomanNumberConverter{
 
 private static Map<Character, Integer> table = new HashMap <Character, Integer> (){{
 	put('I',1);

@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import static org.junit.Assert.*;
 
-import br.com.devisgood.RomanNumberConverter;
-
 public class RomanNumberConverterTest extends TestCase{
 
 	@Test
@@ -36,21 +34,21 @@ public class RomanNumberConverterTest extends TestCase{
 
 	@Test
 	public void withTwoSymbols(){
-		RomanNumberConverter = new RomanNumberConverter();
-		int res = RomanNumberConverter("XX");
+		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
+		int res = romanNumberConverter.convert("XX");
 		assertEquals(20, res);
 		
-		res = RomanNumberConverter("XV");
+		res = romanNumberConverter.convert("XV");
 		assertEquals(15, res);
 	}
 	
 	@Test
 	public void withFourSymbolsSplitByTwo(){
-		RomanNumberConverter = new RomanNumberConverter();
-		int res = RomanNumberConverter("XXII");
+		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
+		int res = romanNumberConverter.convert("XXII");
 		assertEquals(22, res);
 		
-		res = RomanNumberConverter("XXVV");
+		res = romanNumberConverter.convert("XXVV");
 		assertEquals(30, res);
 	}
 	
@@ -59,14 +57,14 @@ public class RomanNumberConverterTest extends TestCase{
 	// LSB = Less Significant Number
 	// example IX, I = MSB and X = LSN
 	public void MSNLessThanLSN(){
-		RomanNumberConverter = new RomanNumberConverter();
-		int res = RomanNumberConverter("IX");
+		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
+		int res = romanNumberConverter.convert("IX");
 		assertEquals(9, res);
 	}
 	
 	public void withComplexNumbers(){
-		RomanNumberConverter = new RomanNumberConverter();
-		int res = RomanNumberConverter("XXIV");
+		RomanNumberConverter romanNumberConverter = new RomanNumberConverter();
+		int res = romanNumberConverter.convert("XXIV");
 		assertEquals(24, res);
 	}
 }
