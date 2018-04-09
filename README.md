@@ -1,1 +1,1 @@
-# tdd-java
+Esse repositório contem exemplos do livro "Test Driven Development - Java" escrito por Mauricio Aniche e publicado pela Casa do Código.
