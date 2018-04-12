@@ -1,14 +1,20 @@
 package br.com.devisgood;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MaiorPrecoTest {
 	
+	private CarrinhoDeCompras carrinhoDeCompras;
+	
+	@Before
+	public void initialize() {
+		this.carrinhoDeCompras = new CarrinhoDeCompras();
+	}
+	
 	@Test
 	public void deveRetornarZeroSeCarrinhoEstiverVazio(){
-		// given
-		CarrinhoDeCompras carrinhoDeCompras = new CarrinhoDeCompras();
 		
 		//then
 		Assert.assertEquals(0.0, carrinhoDeCompras.calculaMaiorValor(), 0.0001);
@@ -18,12 +24,11 @@ public class MaiorPrecoTest {
 	@Test
 	public void deveRetornarValorDoItemSeCarrinho1Elemento(){
 		// given
-		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		Item item = new Item("computador", 1, 1000);
-		carrinho.adiciona(item);
+		carrinhoDeCompras.adiciona(item);
 		
 		// then
-		Assert.assertEquals(1000, carrinho.calculaMaiorValor(), 0.0001);
+		Assert.assertEquals(1000, carrinhoDeCompras.calculaMaiorValor(), 0.0001);
 	}
 	
 	@Test
