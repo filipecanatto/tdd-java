@@ -29,14 +29,10 @@ public class MaiorPrecoTest {
 	@Test
 	public void deveRetornarValorDosItensSeCarrinhoNElementos(){
 		// given
-		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
-		
-		carrinho.adiciona(new Item("computador", 1, 1000));
-		carrinho.adiciona(new Item("mesa", 2, 500));
-		carrinho.adiciona(new Item("cadeira", 4, 250));
+		CarrinhoDeCompras carrinho = new CarrinhoDeComprasBuilder().addItens(100, 200, 300).create();
 		
 		// then
-		Assert.assertEquals(1000.00, carrinho.calculaMaiorValor(), 0.0001);
+		Assert.assertEquals(300, carrinho.calculaMaiorValor(), 0.0001);
 	}
 	
 
