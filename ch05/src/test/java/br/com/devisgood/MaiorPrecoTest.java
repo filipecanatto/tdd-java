@@ -40,5 +40,20 @@ public class MaiorPrecoTest {
 		Assert.assertEquals(300, carrinho.calculaMaiorValor(), 0.0001);
 	}
 	
+	@Test
+	public void deveAdicionarItens() {
+		
+		// garante que o carrinho esta vazio
+		Assert.assertEquals(0, carrinhoDeCompras.getItens().size());
+		
+		// adiciona itens
+		Item item = new Item("geladeira", 1, 900.0);
+		carrinhoDeCompras.adiciona(item);
+		
+		// testa
+		Assert.assertEquals(1, carrinhoDeCompras.getItens().size());
+		Assert.assertEquals(item, carrinhoDeCompras.getItens().get(0));
+	}
+	
 
 }
