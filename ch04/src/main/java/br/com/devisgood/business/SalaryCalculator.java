@@ -11,7 +11,7 @@ public class SalaryCalculator {
 				return employee.getSalary() * 0.8;
 			}
 			return employee.getSalary() * 0.9;
-		} else if (Position.DBA.equals(employee.getPosition()) || Position.TESTER.equals(employee.getSalary())) {
+		} else if (Position.DBA.equals(employee.getPosition()) || Position.TESTER.equals(employee.getPosition())) {
 			if (employee.getSalary() < 2500) {
 				return employee.getSalary() * 0.85;
 			}
