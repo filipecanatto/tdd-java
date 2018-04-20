@@ -5,10 +5,10 @@ import java.util.Calendar;
 public class Invoice {
 	
 	private String Client;
-	private String totalValue;
+	private double totalValue;
 	private Calendar date;
 	
-	public Invoice(String client, String totalValue, Calendar date) {
+	public Invoice(String client, double totalValue, Calendar date) {
 		Client = client;
 		this.totalValue = totalValue;
 		this.date = date;
@@ -22,11 +22,11 @@ public class Invoice {
 		Client = client;
 	}
 
-	public String getTotalValue() {
+	public double getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(String totalValue) {
+	public void setTotalValue(double totalValue) {
 		this.totalValue = totalValue;
 	}
 
