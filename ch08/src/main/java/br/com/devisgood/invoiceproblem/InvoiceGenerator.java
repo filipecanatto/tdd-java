@@ -1,10 +1,8 @@
-package br.com.devisgood;
+package br.com.devisgood.invoiceproblem;
 
 import java.util.Calendar;
 
-
-
-import br.com.devisgood.InvoiceDAO;
+import br.com.devisgood.invoiceproblem.InvoiceDAO;
 
 public class InvoiceGenerator {
 	

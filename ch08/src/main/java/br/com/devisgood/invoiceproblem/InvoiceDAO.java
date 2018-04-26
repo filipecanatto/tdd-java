@@ -1,4 +1,4 @@
-package br.com.devisgood;
+package br.com.devisgood.invoiceproblem;
 
 public class InvoiceDAO {
 	

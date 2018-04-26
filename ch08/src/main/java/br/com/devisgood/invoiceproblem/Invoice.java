@@ -1,45 +1,41 @@
-package br.com.devisgood;
+package br.com.devisgood.invoiceproblem;
 
-public class Order {
+import java.util.Calendar;
+
+public class Invoice {
 	
 	private String Client;
 	private double totalValue;
-	private int itensQty;
+	private Calendar date;
 	
-	
-	public Order(String client, double totalValue, int itensQty) {
+	public Invoice(String client, double totalValue, Calendar date) {
 		Client = client;
 		this.totalValue = totalValue;
-		this.itensQty = itensQty;
+		this.date = date;
 	}
-
 
 	public String getClient() {
 		return Client;
 	}
 
-
 	public void setClient(String client) {
 		Client = client;
 	}
-
 
 	public double getTotalValue() {
 		return totalValue;
 	}
 
-
 	public void setTotalValue(double totalValue) {
 		this.totalValue = totalValue;
 	}
 
-
-	public int getItensQty() {
-		return itensQty;
+	public Calendar getDate() {
+		return date;
 	}
 
-
-	public void setItensQty(int itensQty) {
-		this.itensQty = itensQty;
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
+	
 }
