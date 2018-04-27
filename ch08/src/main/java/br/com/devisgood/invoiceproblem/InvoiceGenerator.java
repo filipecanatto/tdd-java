@@ -1,35 +1,28 @@
 package br.com.devisgood.invoiceproblem;
 
 import java.util.Calendar;
-
-import br.com.devisgood.invoiceproblem.InvoiceDAO;
+import java.util.List;
 
 public class InvoiceGenerator {
 	
-	private InvoiceDAO dao;
-	private SAP sap;
+	private List<ActionAfterGenerateInvoice> actions;
+	
+	public InvoiceGenerator(List<ActionAfterGenerateInvoice> actions) {
+		this.actions = actions;
+	}
 	
 	public Invoice generate(Order order){
 		Invoice invoice = new Invoice(order.getClient(), order.getTotalValue() * 0.94, Calendar.getInstance());
 		
-		dao.persist(order);
-		sap.send(invoice);
+		if (actions != null) {
+			for (ActionAfterGenerateInvoice action : actions) {
+				action.execute(invoice);
+			}
+		}
 		
 		return invoice;
 		
 	}
 	
-	public InvoiceGenerator( InvoiceDAO dao, SAP sap) {
-		this.dao = dao;
-		this.sap = sap;
-	}
-	
-	public InvoiceGenerator( InvoiceDAO dao) {
-		this.dao = dao;
-	}
-	
-	public InvoiceGenerator() {
-		dao = new InvoiceDAO();
-	}
 
 }

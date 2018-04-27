@@ -6,6 +6,9 @@ import br.com.devisgood.copier.interfaces.IXMLWriter;
 //This example show the right way to work with class dependencies using tdd
 public class RightCopier {
 	
+	/* we use interface because it does not change with facility, so
+	 * the class RightCopier become stable.
+	 */
 	IXMLReader reader;
 	IXMLWriter writer;
 	

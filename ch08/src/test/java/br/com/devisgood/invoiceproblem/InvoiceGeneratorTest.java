@@ -1,5 +1,8 @@
 package br.com.devisgood.invoiceproblem;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -15,11 +18,9 @@ public class InvoiceGeneratorTest {
 	@Test
 	public void shouldGenerateInvoiceWithTaxDiscount(){
 		
-		// create mock
-		InvoiceDAO dao = Mockito.mock(InvoiceDAO.class);
-		SAP sap = Mockito.mock(SAP.class);
+		List<ActionAfterGenerateInvoice> actions = null;
 				
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(dao, sap);
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(actions);
 		Order order = new Order("Filip", 1200.0, 10);
 		
 		Invoice invoice = invoiceGenerator.generate(order);
@@ -31,31 +32,31 @@ public class InvoiceGeneratorTest {
 	public void shouldPersistTheInvoice(){
 		
 		// create mock
-		InvoiceDAO dao = Mockito.mock(InvoiceDAO.class);
-		SAP sap = Mockito.mock(SAP.class);
+		ActionAfterGenerateInvoice dao = Mockito.mock(InvoiceDAO.class);
 		
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(dao, sap);
+		List<ActionAfterGenerateInvoice> actions = Arrays.asList(dao);
+		
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(actions);
 		Order order = new Order("Marck", 1800.0, 10);
 		
 		Invoice invoice = invoiceGenerator.generate(order);
 		
-		Mockito.verify(dao).persist(order);
+		Mockito.verify(dao).execute(invoice);
 	}
 	
 	@Test
-	public void shouldSendToSAP() {
+	public void shouldSendToSAP() {	
 		
 		// create mock
-		InvoiceDAO dao = Mockito.mock(InvoiceDAO.class);
-		SAP sap = Mockito.mock(SAP.class);
+		ActionAfterGenerateInvoice sap = Mockito.mock(SAP.class);
 		
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(dao, sap);
-		Order order = new Order("Joe", 1850.0, 10);
+		List<ActionAfterGenerateInvoice> actions = Arrays.asList(sap);
+		
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(actions);
+		Order order = new Order("Marck", 1800.0, 10);
 		
 		Invoice invoice = invoiceGenerator.generate(order);
 		
-		Mockito.verify(sap).send(invoice);
-		
-	}
+		Mockito.verify(sap).execute(invoice);}
 
 }
