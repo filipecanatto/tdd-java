@@ -11,6 +11,10 @@ public class InvoiceGenerator {
 		this.actions = actions;
 	}
 	
+	public InvoiceGenerator() {
+		
+	}
+	
 	public Invoice generate(Order order){
 		Invoice invoice = new Invoice(order.getClient(), order.getTotalValue() * 0.94, Calendar.getInstance());
 		
@@ -19,6 +23,7 @@ public class InvoiceGenerator {
 				action.execute(invoice);
 			}
 		}
+		
 		
 		return invoice;
 		
