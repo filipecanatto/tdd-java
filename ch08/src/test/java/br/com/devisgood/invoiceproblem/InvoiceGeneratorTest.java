@@ -1,6 +1,7 @@
 package br.com.devisgood.invoiceproblem;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,22 +12,27 @@ import br.com.devisgood.invoiceproblem.InvoiceDAO;
 import br.com.devisgood.invoiceproblem.InvoiceGenerator;
 import br.com.devisgood.invoiceproblem.Order;
 import br.com.devisgood.invoiceproblem.SAP;
+import br.com.devisgood.invoiceproblem.interfaces.ITable;
 import junit.framework.Assert;
 
 public class InvoiceGeneratorTest {
 	
 	@Test
-	public void shouldGenerateInvoiceWithTaxDiscount(){
+	public void shouldGenerateInvoiceWithTaxDiscountUsingTable(){
 		
 		// given
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-		Order order = new Order("Filip", 1200.0, 10);
+		Order order = new Order("Filip", 900.0, 10);
+		ITable table = Mockito.mock(Table.class);
+		Mockito.when(table.getDiscount(order.getTotalValue())).thenReturn(0.2);
+		List<ActionAfterGenerateInvoice> actions = Collections.emptyList();
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(actions, table);
 		
 		// when
 		Invoice invoice = invoiceGenerator.generate(order);
 		
 		// then
-		Assert.assertEquals(1200.0 * 0.94, invoice.getTotalValue());
+		Mockito.verify(table).getDiscount(order.getTotalValue());
+		Assert.assertEquals(order.getTotalValue() * 0.98, invoice.getTotalValue());
 	}
 	
 	@Test
@@ -52,7 +58,7 @@ public class InvoiceGeneratorTest {
 		ActionAfterGenerateInvoice sap = Mockito.mock(SAP.class);
 		List<ActionAfterGenerateInvoice> actions = Arrays.asList(sap);
 		InvoiceGenerator invoiceGenerator = new InvoiceGenerator(actions);
-		Order order = new Order("Marck", 1800.0, 10);
+		Order order = new Order("Lucke", 1800.0, 10);
 		
 		// when
 		Invoice invoice = invoiceGenerator.generate(order);
